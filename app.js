@@ -1,528 +1,398 @@
-/* --- Maison d'Élégance Luxury Boutique Application --- */
-/* --- Built and Engineered by Awais --- */
+/* ==========================================================================
+   AURA ROYAL COUTURE - APP.JS
+   Interactive Products, Cart, Wishlist, Categories, & Gift Voucher Confetti
+   Dedicated to Mom, Dad & Aunt | Crafted by Awais
+   ========================================================================== */
 
-// Product Database with PKR prices and custom SVG icon definitions
-const products = [
-    {
-        id: 1,
-        title: "Sovereign Emerald Zardozi Sherwani",
-        category: "men",
-        badge: "Royal Heirloom",
-        price: 85000,
-        description: "Exquisite deep emerald velvet sherwani hand-embroidered with 24k gold bullion threads, antique dabka, and emerald crystal buttons. Crafted for regal grooms and patriarchs.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M70 40 L100 25 L130 40 L140 120 L130 220 L70 220 L60 120 Z" fill="#0A281F" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M100 25 L100 220 M75 70 Q100 90 125 70 M70 120 Q100 140 130 120" stroke="#D4AF37" stroke-width="1.5" opacity="0.8"/>
-            <circle cx="100" cy="70" r="4" fill="#D4AF37"/>
-            <circle cx="100" cy="110" r="4" fill="#D4AF37"/>
-            <circle cx="100" cy="150" r="4" fill="#D4AF37"/>
-        </svg>`
-    },
-    {
-        id: 2,
-        title: "Ivory Silk Bridal Heirloom Lehenga",
-        category: "women",
-        badge: "Masterpiece",
-        price: 145000,
-        description: "Pure raw ivory silk lehenga featuring opulent dabka, pearls, and cut-dana work. Paired with an emerald tissue dupatta bordered in scalloped gold zardozi.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M80 50 C90 35 110 35 120 50 C140 100 170 190 180 220 C185 235 170 240 155 240 L45 240 C30 240 15 235 20 220 C30 190 60 100 80 50 Z" fill="#0F382B" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M100 50 L100 240 M60 100 Q100 130 140 100 M45 160 Q100 190 155 160" stroke="#D4AF37" stroke-width="1.5" opacity="0.8"/>
-            <circle cx="100" cy="80" r="5" fill="#D4AF37"/>
-        </svg>`
-    },
-    {
-        id: 3,
-        title: "Petit Sovereign Prince Suit",
-        category: "kids",
-        badge: "Junior Royal",
-        price: 32000,
-        description: "A charming miniature velvet bandhgala suit crafted for young princes, featuring delicate gold collar embroidery and comfortable silk lining.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M75 55 L100 40 L125 55 L135 130 L125 210 L75 210 L65 130 Z" fill="#051B13" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M100 40 L100 210 M70 90 Q100 110 130 90" stroke="#D4AF37" stroke-width="1.2" opacity="0.8"/>
-            <polygon points="100,65 104,75 100,85 96,75" fill="#D4AF37"/>
-        </svg>`
-    },
-    {
-        id: 4,
-        title: "Royal Emerald Velvet Pashmina Shawl",
-        category: "gifts",
-        badge: "Limited Edition",
-        price: 45000,
-        description: "Hand-spun cashmere pashmina dyed in deep emerald green, adorned with intricate Kashmiri sozni needlework in shimmering gold and ivory threads.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="40" y="60" width="120" height="130" rx="15" fill="#0A281F" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M60 80 Q100 120 140 80 M60 170 Q100 130 140 170" stroke="#D4AF37" stroke-width="1.5" opacity="0.9"/>
-            <circle cx="100" cy="125" r="18" stroke="#D4AF37" stroke-width="1.5" fill="#051B13"/>
-        </svg>`
-    },
-    {
-        id: 5,
-        title: "Ivory Organza Peplum & Gharara",
-        category: "women",
-        badge: "Bespoke",
-        price: 95000,
-        description: "Ethereal pure organza peplum top paired with a flowing double-layer gharara, embellished with intricate mirrorwork and gold tilla borders.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M70 50 L130 50 C140 100 150 140 160 210 C165 225 150 230 135 230 L65 230 C50 230 35 225 40 210 C50 140 60 100 70 50 Z" fill="#0F382B" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M100 50 L100 230 M55 120 Q100 150 145 120" stroke="#D4AF37" stroke-width="1.5" opacity="0.8"/>
-            <circle cx="100" cy="75" r="4" fill="#D4AF37"/>
-        </svg>`
-    },
-    {
-        id: 6,
-        title: "Sovereign Gold Cufflinks & Pocket Square Set",
-        category: "gifts",
-        badge: "Collector",
-        price: 18500,
-        description: "24k gold-plated sterling silver cufflinks featuring the Maison crest, accompanied by a pure emerald silk jacquard pocket square.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="55" y="75" width="90" height="90" rx="10" transform="rotate(45 100 120)" fill="#0A281F" stroke="#D4AF37" stroke-width="2"/>
-            <circle cx="100" cy="120" r="25" fill="#D4AF37" opacity="0.2"/>
-            <polygon points="100,95 108,112 125,120 108,128 100,145 92,128 75,120 92,112" fill="#D4AF37"/>
-        </svg>`
-    },
-    {
-        id: 7,
-        title: "Petit Princess Gold Tissue Frock",
-        category: "kids",
-        badge: "Heirloom",
-        price: 28000,
-        description: "Delicate gold tissue frock for young princesses featuring hand-stitched floral pearl motifs and an ivory organza sash.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M80 60 C90 45 110 45 120 60 C140 110 160 180 170 215 C175 225 165 230 150 230 L50 230 C35 230 25 225 30 215 C40 180 60 110 80 60 Z" fill="#051B13" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M100 60 L100 230 M60 110 Q100 130 140 110" stroke="#D4AF37" stroke-width="1.2" opacity="0.8"/>
-            <circle cx="100" cy="85" r="4" fill="#D4AF37"/>
-        </svg>`
-    },
-    {
-        id: 8,
-        title: "Sovereign Brocade Kurta & Waistcoat",
-        category: "men",
-        badge: "Bespoke",
-        price: 55000,
-        description: "Pure raw silk ivory kurta paired with a deep emerald jacquard waistcoat woven with intricate gold motifs. The quintessential family celebration attire.",
-        svgArt: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M70 45 L100 30 L130 45 L135 220 L65 220 Z" fill="#0F382B" stroke="#D4AF37" stroke-width="2"/>
-            <path d="M100 30 L100 220 M70 90 Q100 110 130 90 M68 150 Q100 170 132 150" stroke="#D4AF37" stroke-width="1.5" opacity="0.8"/>
-            <circle cx="100" cy="70" r="4" fill="#D4AF37"/>
-        </svg>`
-    }
-];
-
-// State Management
-let shoppingBag = [];
-let wishlist = [];
-let appliedVoucher = null;
-const voucherCodeValue = "MAISON-VIP-2025-AW";
-const voucherDiscount = 15000;
-
-// Format PKR Currency
-function formatPKR(amount) {
-    return "PKR " + amount.toLocaleString('en-PK');
-}
-
-// DOM Elements
-const productsGrid = document.getElementById('productsGrid');
-const bagBadge = document.getElementById('bagBadge');
-const wishlistBadge = document.getElementById('wishlistBadge');
-const bagCountHeader = document.getElementById('bagCountHeader');
-const wishlistCountHeader = document.getElementById('wishlistCountHeader');
-const bagItemsContainer = document.getElementById('bagItemsContainer');
-const wishlistItemsContainer = document.getElementById('wishlistItemsContainer');
-const bagSubtotal = document.getElementById('bagSubtotal');
-const bagTotal = document.getElementById('bagTotal');
-const bagDrawer = document.getElementById('bagDrawer');
-const wishlistDrawer = document.getElementById('wishlistDrawer');
-const drawerOverlay = document.getElementById('drawerOverlay');
-const bagBtn = document.getElementById('bagBtn');
-const wishlistBtn = document.getElementById('wishlistBtn');
-const closeBagDrawer = document.getElementById('closeBagDrawer');
-const closeWishlistDrawer = document.getElementById('closeWishlistDrawer');
-const quickViewModal = document.getElementById('quickViewModal');
-const closeQuickView = document.getElementById('closeQuickView');
-const quickViewContent = document.getElementById('quickViewContent');
-const vipModal = document.getElementById('vipModal');
-const closeVipModal = document.getElementById('closeVipModal');
-const vipVoucherBtn = document.getElementById('vipVoucherBtn');
-const claimVoucherBtn = document.getElementById('claimVoucherBtn');
-const heroSurpriseBtn = document.getElementById('heroSurpriseBtn');
-const applyVoucherModalBtn = document.getElementById('applyVoucherModalBtn');
-const moveAllToBagBtn = document.getElementById('moveAllToBagBtn');
-const checkoutBtn = document.getElementById('checkoutBtn');
-const navToggle = document.getElementById('navToggle');
-const mainNav = document.getElementById('mainNav');
-
-// Initialize Website
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts('all');
-    setupEventListeners();
-    updateBadges();
-});
+    // Product Data with PKR Prices and Custom SVG Icon Renderers
+    const products = [
+        {
+            id: 1,
+            title: "The Mom Imperial Emerald Sari",
+            category: "festive",
+            price: 68500,
+            badge: "Mom's Pick",
+            description: "Hand-woven pure chiffon sari adorned with antique zardozi embroidery and emerald crystal embellishments.",
+            svgIcon: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M70 40C70 40 85 30 100 30C115 30 130 40 130 40L140 120C140 120 150 180 130 220C110 260 90 260 90 260H110C110 260 125 210 115 150L100 70L85 150C75 210 90 260 90 260H70C70 260 50 260 30 220C10 180 20 120 20 120L30 40H70Z" fill="url(#emeraldGrad)" stroke="#d4af37" stroke-width="2"/>
+                <path d="M100 30L130 140L100 220L70 140L100 30Z" fill="#d4af37" fill-opacity="0.2" stroke="#d4af37" stroke-width="1.5"/>
+                <circle cx="100" cy="80" r="12" fill="#d4af37"/>
+                <circle cx="100" cy="130" r="8" fill="#d4af37"/>
+                <defs>
+                    <linearGradient id="emeraldGrad" x1="20" y1="30" x2="140" y2="260" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#06543b"/>
+                        <stop offset="100%" stop-color="#022314"/>
+                    </linearGradient>
+                </defs>
+            </svg>`
+        },
+        {
+            id: 2,
+            title: "Dad's Royal Velvet Sherwani",
+            category: "mens",
+            price: 95000,
+            badge: "Dad's Choice",
+            description: "Tailored British velvet in deep forest emerald with hand-embroidered gold bullion buttons and regal collar.",
+            svgIcon: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M60 45L100 35L140 45L155 110L140 230H60L45 110L60 45Z" fill="url(#sherwaniGrad)" stroke="#d4af37" stroke-width="2"/>
+                <path d="M100 35V230" stroke="#d4af37" stroke-width="2" stroke-dasharray="6 4"/>
+                <rect x="92" y="70" width="16" height="120" rx="4" fill="#d4af37" fill-opacity="0.4"/>
+                <defs>
+                    <linearGradient id="sherwaniGrad" x1="45" y1="35" x2="155" y2="230" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#043927"/>
+                        <stop offset="100%" stop-color="#022314"/>
+                    </linearGradient>
+                </defs>
+            </svg>`
+        },
+        {
+            id: 3,
+            title: "Aunt's Kashmiri Pashmina Shawl",
+            category: "shawls",
+            price: 45000,
+            badge: "Aunt's Favourite",
+            description: "Authentic hand-spun pashmina featuring intricate Sozni needlework in ivory and metallic gold threads.",
+            svgIcon: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="30" y="50" width="140" height="150" rx="15" fill="url(#shawlGrad)" stroke="#d4af37" stroke-width="2"/>
+                <path d="M30 80H170M30 110H170M30 140H170M30 170H170" stroke="#d4af37" stroke-width="1" stroke-opacity="0.5"/>
+                <circle cx="100" cy="125" r="30" fill="#d4af37" fill-opacity="0.2" stroke="#d4af37" stroke-width="2"/>
+                <defs>
+                    <linearGradient id="shawlGrad" x1="30" y1="50" x2="170" y2="200" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#097553"/>
+                        <stop offset="100%" stop-color="#043927"/>
+                    </linearGradient>
+                </defs>
+            </svg>`
+        },
+        {
+            id: 4,
+            title: "The Regal Emerald Maxi Gown",
+            category: "couture",
+            price: 82000,
+            badge: "Bespoke",
+            description: "Flowing organza maxi gown with shimmering gold filigree and hand-beaded pearl borders.",
+            svgIcon: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M75 35C75 35 88 25 100 25C112 25 125 35 125 35L145 225H55L75 35Z" fill="url(#maxiGrad)" stroke="#d4af37" stroke-width="2"/>
+                <path d="M100 25V225" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="5 5"/>
+                <defs>
+                    <linearGradient id="maxiGrad" x1="55" y1="25" x2="145" y2="225" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#06543b"/>
+                        <stop offset="100%" stop-color="#01180e"/>
+                    </linearGradient>
+                </defs>
+            </svg>`
+        },
+        {
+            id: 5,
+            title: "Dad's Formal Raw Silk Kurta",
+            category: "mens",
+            price: 28000,
+            badge: "Classic",
+            description: "Pure raw silk kurta in rich ivory with delicate emerald resham embroidery on the collar and cuffs.",
+            svgIcon: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M65 45L100 35L135 45L145 215H55L65 45Z" fill="url(#kurtaGrad)" stroke="#d4af37" stroke-width="2"/>
+                <path d="M100 35V120" stroke="#d4af37" stroke-width="2"/>
+                <defs>
+                    <linearGradient id="kurtaGrad" x1="55" y1="35" x2="145" y2="215" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#fbf9f1"/>
+                        <stop offset="100%" stop-color="#eadecd"/>
+                    </linearGradient>
+                </defs>
+            </svg>`
+        },
+        {
+            id: 6,
+            title: "Mom & Aunt Matching Zari Dupatta",
+            category: "shawls",
+            price: 22000,
+            badge: "Limited Edition",
+            description: "Banarasi organza dupatta with heavy gold tilla work and scalloped embroidered edges.",
+            svgIcon: `<svg viewBox="0 0 200 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="40" y="60" width="120" height="130" rx="10" fill="url(#dupattaGrad)" stroke="#d4af37" stroke-width="2"/>
+                <path d="M40 90H160M40 120H160M40 150H160" stroke="#d4af37" stroke-width="1.5"/>
+                <defs>
+                    <linearGradient id="dupattaGrad" x1="40" y1="60" x2="160" y2="190" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#0d996d"/>
+                        <stop offset="100%" stop-color="#06543b"/>
+                    </linearGradient>
+                </defs>
+            </svg>`
+        }
+    ];
 
-// Render Products Grid
-function renderProducts(category) {
-    productsGrid.innerHTML = '';
-    const filtered = category === 'all' 
-        ? products 
-        : products.filter(p => p.category === category);
+    // State Management
+    let cart = [];
+    let wishlist = [];
 
-    if (filtered.length === 0) {
-        productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--gray-text); padding: 40px;">No sovereign masterpieces found in this category.</p>`;
-        return;
+    // DOM Elements
+    const productsGrid = document.getElementById('productsGrid');
+    const categoryTabs = document.querySelectorAll('.tab-btn');
+    const cartCount = document.getElementById('cartCount');
+    const wishlistCount = document.getElementById('wishlistCount');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const wishlistDrawer = document.getElementById('wishlistDrawer');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const wishlistOverlay = document.getElementById('wishlistOverlay');
+    const openCartBtn = document.getElementById('openCartBtn');
+    const openWishlistBtn = document.getElementById('openWishlistBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const closeWishlistBtn = document.getElementById('closeWishlistBtn');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
+    const wishlistItemsContainer = document.getElementById('wishlistItemsContainer');
+    const cartTotalAmount = document.getElementById('cartTotalAmount');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const generateVoucherBtn = document.getElementById('generateVoucherBtn');
+    const voucherCodeDisplay = document.getElementById('voucherCodeDisplay');
+
+    // Format Currency in PKR
+    function formatPKR(amount) {
+        return 'PKR ' + amount.toLocaleString('en-PK');
     }
 
-    filtered.forEach(product => {
-        const isWishlisted = wishlist.some(item => item.id === product.id);
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <span class="product-badge">${product.badge}</span>
-            <button class="wishlist-toggle-btn ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist(${product.id})" title="Wishlist">
-                <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-            </button>
-            <div class="product-image-container" onclick="openQuickView(${product.id})" style="cursor: pointer;">
-                <div class="product-svg-thumb">${product.svgArt}</div>
-            </div>
-            <div class="product-info">
-                <span class="product-category-tag">${product.category.toUpperCase()}</span>
-                <h3 class="product-title">${product.title}</h3>
-                <p class="product-description">${product.description.substring(0, 85)}...</p>
-                <div class="product-footer-row">
-                    <span class="product-price">${formatPKR(product.price)}</span>
-                    <div class="card-actions">
-                        <button class="btn-icon-sm btn-quick" onclick="openQuickView(${product.id})" title="Quick View"><i class="fa-solid fa-eye"></i></button>
-                        <button class="btn-icon-sm" onclick="addToBag(${product.id})" title="Add to Bag"><i class="fa-solid fa-bag-shopping"></i></button>
+    // Render Products Grid
+    function renderProducts(category = 'all') {
+        productsGrid.innerHTML = '';
+        const filtered = category === 'all' 
+            ? products 
+            : products.filter(p => p.category === category);
+
+        filtered.forEach(product => {
+            const isWishlisted = wishlist.some(item => item.id === product.id);
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <span class="product-badge">${product.badge}</span>
+                <button class="wishlist-toggle ${isWishlisted ? 'active' : ''}" data-id="${product.id}" aria-label="Add to Wishlist">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="${isWishlisted ? 'currentColor' : 'none'}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2"/></svg>
+                </button>
+                <div class="product-image-container">
+                    ${product.svgIcon}
+                </div>
+                <div class="product-details">
+                    <span class="product-category">${product.category.toUpperCase()}</span>
+                    <h3 class="product-title">${product.title}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-footer">
+                        <span class="product-price">${formatPKR(product.price)}</span>
+                        <button class="btn-add-cart" data-id="${product.id}">Add to Bag</button>
                     </div>
                 </div>
-            </div>
-        `;
-        productsGrid.appendChild(card);
-    });
-}
+            `;
+            productsGrid.appendChild(card);
+        });
 
-// Category Tabs Event Listeners
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        e.target.classList.add('active');
-        const category = e.target.getAttribute('data-category');
-        renderProducts(category);
-    });
-});
-
-// Add to Shopping Bag
-function addToBag(productId) {
-    const product = products.find(p => p.id === productId);
-    const existing = shoppingBag.find(item => item.id === productId);
-    if (existing) {
-        existing.qty += 1;
-    } else {
-        shoppingBag.push({ ...product, qty: 1 });
-    }
-    updateBagDrawer();
-    updateBadges();
-    openBagDrawer();
-}
-
-// Toggle Wishlist
-function toggleWishlist(productId) {
-    const product = products.find(p => p.id === productId);
-    const index = wishlist.findIndex(item => item.id === productId);
-    if (index > -1) {
-        wishlist.splice(index, 1);
-    } else {
-        wishlist.push(product);
-    }
-    // Re-render current category to update heart icons
-    const activeTab = document.querySelector('.tab-btn.active');
-    const cat = activeTab ? activeTab.getAttribute('data-category') : 'all';
-    renderProducts(cat);
-    updateWishlistDrawer();
-    updateBadges();
-}
-
-// Update Badges
-function updateBadges() {
-    const totalBagQty = shoppingBag.reduce((sum, item) => sum + item.qty, 0);
-    bagBadge.textContent = totalBagQty;
-    bagCountHeader.textContent = totalBagQty;
-
-    wishlistBadge.textContent = wishlist.length;
-    wishlistCountHeader.textContent = wishlist.length;
-}
-
-// Update Bag Drawer
-function updateBagDrawer() {
-    if (shoppingBag.length === 0) {
-        bagItemsContainer.innerHTML = `
-            <div class="empty-drawer">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <p>Your royal shopping bag is currently empty.</p>
-            </div>
-        `;
-        bagSubtotal.textContent = formatPKR(0);
-        bagTotal.textContent = formatPKR(0);
-        return;
+        // Attach Event Listeners to New Buttons
+        attachProductListeners();
     }
 
-    bagItemsContainer.innerHTML = '';
-    let subtotal = 0;
+    // Attach Event Listeners to Product Cards
+    function attachProductListeners() {
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                addToCart(id);
+            });
+        });
 
-    shoppingBag.forEach(item => {
-        subtotal += item.price * item.qty;
-        const itemEl = document.createElement('div');
-        itemEl.className = 'drawer-item';
-        itemEl.innerHTML = `
-            <div class="drawer-item-img">${item.svgArt}</div>
-            <div class="drawer-item-details">
-                <h4 class="drawer-item-title">${item.title}</h4>
-                <div class="drawer-item-price">${formatPKR(item.price)}</div>
-                <div class="drawer-item-controls">
-                    <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
-                    <span>${item.qty}</span>
-                    <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
-                    <button class="remove-item-btn" onclick="removeFromBag(${item.id})"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
-            </div>
-        `;
-        bagItemsContainer.appendChild(itemEl);
+        document.querySelectorAll('.wishlist-toggle').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.getAttribute('data-id'));
+                toggleWishlist(id);
+            });
+        });
+    }
+
+    // Category Tabs Filter
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            e.target.classList.add('active');
+            const category = e.target.getAttribute('data-category');
+            renderProducts(category);
+        });
     });
 
-    bagSubtotal.textContent = formatPKR(subtotal);
-    let total = subtotal;
-    if (appliedVoucher) {
-        total = Math.max(0, subtotal - voucherDiscount);
-        bagSubtotal.innerHTML = `${formatPKR(subtotal)} <br><span style="font-size:0.8rem; color:var(--gold-dark);">VIP Voucher (-${formatPKR(voucherDiscount)}) Applied</span>`;
-    }
-    bagTotal.textContent = formatPKR(total);
-}
-
-// Change Quantity
-function changeQty(productId, delta) {
-    const item = shoppingBag.find(i => i.id === productId);
-    if (item) {
-        item.qty += delta;
-        if (item.qty <= 0) {
-            shoppingBag = shoppingBag.filter(i => i.id !== productId);
-        }
-    }
-    updateBagDrawer();
-    updateBadges();
-}
-
-// Remove from Bag
-function removeFromBag(productId) {
-    shoppingBag = shoppingBag.filter(i => i.id !== productId);
-    updateBagDrawer();
-    updateBadges();
-}
-
-// Update Wishlist Drawer
-function updateWishlistDrawer() {
-    if (wishlist.length === 0) {
-        wishlistItemsContainer.innerHTML = `
-            <div class="empty-drawer">
-                <i class="fa-regular fa-heart"></i>
-                <p>Your curated wishlist is empty.</p>
-            </div>
-        `;
-        return;
-    }
-
-    wishlistItemsContainer.innerHTML = '';
-    wishlist.forEach(item => {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'drawer-item';
-        itemEl.innerHTML = `
-            <div class="drawer-item-img">${item.svgArt}</div>
-            <div class="drawer-item-details">
-                <h4 class="drawer-item-title">${item.title}</h4>
-                <div class="drawer-item-price">${formatPKR(item.price)}</div>
-                <div class="drawer-item-controls">
-                    <button class="btn btn-gold" style="padding: 6px 12px; font-size: 0.75rem;" onclick="moveWishlineToBag(${item.id})"><i class="fa-solid fa-bag-shopping"></i> Move to Bag</button>
-                    <button class="remove-item-btn" onclick="removeFromWishlist(${item.id})"><i class="fa-solid fa-trash-can"></i></button>
-                </div>
-            </div>
-        `;
-        wishlistItemsContainer.appendChild(itemEl);
-    });
-}
-
-// Move single wishlist item to bag
-function moveWishlineToBag(productId) {
-    addToBag(productId);
-    removeFromWishlist(productId);
-}
-
-// Remove from Wishlist
-function removeFromWishlist(productId) {
-    wishlist = wishlist.filter(i => i.id !== productId);
-    const activeTab = document.querySelector('.tab-btn.active');
-    const cat = activeTab ? activeTab.getAttribute('data-category') : 'all';
-    renderProducts(cat);
-    updateWishlistDrawer();
-    updateBadges();
-}
-
-// Move all wishlist to bag
-moveAllToBagBtn.addEventListener('click', () => {
-    if (wishlist.length === 0) return;
-    wishlist.forEach(item => {
-        const existing = shoppingBag.find(i => i.id === item.id);
+    // Cart Functions
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        const existing = cart.find(item => item.id === productId);
         if (existing) {
-            existing.qty += 1;
+            existing.quantity += 1;
         } else {
-            shoppingBag.push({ ...item, qty: 1 });
+            cart.push({ ...product, quantity: 1 });
         }
-    });
-    wishlist = [];
-    const activeTab = document.querySelector('.tab-btn.active');
-    const cat = activeTab ? activeTab.getAttribute('data-category') : 'all';
-    renderProducts(cat);
-    updateWishlistDrawer();
-    updateBagDrawer();
-    updateBadges();
-    closeWishlistDrawerFn();
-    openBagDrawer();
-});
-
-// Quick View Modal
-function openQuickView(productId) {
-    const product = products.find(p => p.id === productId);
-    quickViewContent.innerHTML = `
-        <div class="modal-img-box">${product.svgArt}</div>
-        <div class="modal-details">
-            <span class="product-category-tag">${product.category.toUpperCase()} • ${product.badge}</span>
-            <h2>${product.title}</h2>
-            <div class="modal-price">${formatPKR(product.price)}</div>
-            <p class="modal-desc">${product.description}</p>
-            <button class="btn btn-gold btn-full" onclick="addToBag(${product.id}); closeQuickViewFn();"><i class="fa-solid fa-bag-shopping"></i> Add to Sovereign Bag</button>
-        </div>
-    `;
-    quickViewModal.classList.add('active');
-}
-
-function closeQuickViewFn() {
-    quickViewModal.classList.remove('active');
-}
-closeQuickView.addEventListener('click', closeQuickViewFn);
-
-// Open/Close Drawers
-function openBagDrawer() {
-    bagDrawer.classList.add('active');
-    wishlistDrawer.classList.remove('active');
-    drawerOverlay.classList.add('active');
-}
-
-function closeBagDrawerFn() {
-    bagDrawer.classList.remove('active');
-    if (!wishlistDrawer.classList.contains('active')) {
-        drawerOverlay.classList.remove('active');
+        updateCartUI();
+        openCart();
     }
-}
 
-function openWishlistDrawer() {
-    wishlistDrawer.classList.add('active');
-    bagDrawer.classList.remove('active');
-    drawerOverlay.classList.add('active');
-}
-
-function closeWishlistDrawerFn() {
-    wishlistDrawer.classList.remove('active');
-    if (!bagDrawer.classList.contains('active')) {
-        drawerOverlay.classList.remove('active');
+    function removeFromCart(productId) {
+        cart = cart.filter(item => item.id !== productId);
+        updateCartUI();
     }
-}
 
-bagBtn.addEventListener('click', () => {
-    updateBagDrawer();
-    openBagDrawer();
-});
-
-wishlistBtn.addEventListener('click', () => {
-    updateWishlistDrawer();
-    openWishlistDrawer();
-});
-
-closeBagDrawer.addEventListener('click', closeBagDrawerFn);
-closeWishlistDrawer.addEventListener('click', closeWishlistDrawerFn);
-drawerOverlay.addEventListener('click', () => {
-    closeBagDrawerFn();
-    closeWishlistDrawerFn();
-});
-
-// VIP Voucher Trigger with Golden Confetti
-function triggerVipCelebration() {
-    vipModal.classList.add('active');
-    // Launch celebratory confetti burst
-    confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#D4AF37', '#F3E5AB', '#051B13', '#FFFFFF']
-    });
-}
-
-vipVoucherBtn.addEventListener('click', triggerVipCelebration);
-claimVoucherBtn.addEventListener('click', triggerVipCelebration);
-heroSurpriseBtn.addEventListener('click', triggerVipCelebration);
-
-function closeVipModalFn() {
-    vipModal.classList.remove('active');
-}
-closeVipModal.addEventListener('click', closeVipModalFn);
-
-applyVoucherModalBtn.addEventListener('click', () => {
-    appliedVoucher = voucherCodeValue;
-    closeVipModalFn();
-    updateBagDrawer();
-    openBagDrawer();
-    // Tiny confetti burst on apply
-    confetti({
-        particleCount: 60,
-        spread: 50,
-        origin: { y: 0.8 },
-        colors: ['#D4AF37', '#051B13']
-    });
-});
-
-// Checkout Simulation
-checkoutBtn.addEventListener('click', () => {
-    if (shoppingBag.length === 0) {
-        alert("Your shopping bag is empty.");
-        return;
-    }
-    alert("Secure Royal Checkout initiated! Thank you for shopping with Maison d'Élégance. Your order will be handcrafted with utmost precision.");
-    shoppingBag = [];
-    appliedVoucher = null;
-    updateBagDrawer();
-    updateBadges();
-    closeBagDrawerFn();
-});
-
-// Mobile Nav Toggle
-navToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('active');
-});
-
-mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        mainNav.classList.remove('active');
-    });
-});
-
-// Setup General Event Listeners
-function setupEventListeners() {
-    // Escape key closes modals/drawers
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeBagDrawerFn();
-            closeWishlistDrawerFn();
-            closeQuickViewFn();
-            closeVipModalFn();
-            drawerOverlay.classList.remove('active');
+    function updateCartUI() {
+        cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = `<div class="empty-state">Your royal shopping bag is empty. Explore our exquisite family collections.</div>`;
+            cartTotalAmount.textContent = formatPKR(0);
+            return;
         }
+
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+
+        cart.forEach(item => {
+            total += item.price * item.quantity;
+            const div = document.createElement('div');
+            div.className = 'drawer-item';
+            div.innerHTML = `
+                <div class="drawer-item-img">${item.svgIcon}</div>
+                <div class="drawer-item-details">
+                    <h4 class="drawer-item-title">${item.title}</h4>
+                    <div class="drawer-item-price">${formatPKR(item.price)} × ${item.quantity}</div>
+                </div>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove item">×</button>
+            `;
+            cartItemsContainer.appendChild(div);
+        });
+
+        cartTotalAmount.textContent = formatPKR(total);
+
+        // Remove item buttons
+        document.querySelectorAll('.remove-item-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                removeFromCart(id);
+            });
+        });
+    }
+
+    // Wishlist Functions
+    function toggleWishlist(productId) {
+        const product = products.find(p => p.id === productId);
+        const index = wishlist.findIndex(item => item.id === productId);
+        
+        if (index > -1) {
+            wishlist.splice(index, 1);
+        } else {
+            wishlist.push(product);
+        }
+        
+        updateWishlistUI();
+        renderProducts(document.querySelector('.tab-btn.active').getAttribute('data-category'));
+    }
+
+    function updateWishlistUI() {
+        wishlistCount.textContent = wishlist.length;
+
+        if (wishlist.length === 0) {
+            wishlistItemsContainer.innerHTML = `<div class="empty-state">Your wishlist is pristine. Save your favorite family pieces here.</div>`;
+            return;
+        }
+
+        wishlistItemsContainer.innerHTML = '';
+        wishlist.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'drawer-item';
+            div.innerHTML = `
+                <div class="drawer-item-img">${item.svgIcon}</div>
+                <div class="drawer-item-details">
+                    <h4 class="drawer-item-title">${item.title}</h4>
+                    <div class="drawer-item-price">${formatPKR(item.price)}</div>
+                </div>
+                <button class="btn-add-cart" data-id="${item.id}" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">Move to Bag</button>
+                <button class="remove-item-btn" data-id="${item.id}" aria-label="Remove item">×</button>
+            `;
+            wishlistItemsContainer.appendChild(div);
+        });
+
+        // Wishlist item actions
+        wishlistItemsContainer.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                addToCart(id);
+                toggleWishlist(id);
+                closeWishlist();
+            });
+        });
+
+        wishlistItemsContainer.querySelectorAll('.remove-item-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                toggleWishlist(id);
+            });
+        });
+    }
+
+    // Drawer Controls
+    function openCart() {
+        cartDrawer.classList.add('active');
+        cartOverlay.classList.add('active');
+    }
+
+    function closeCart() {
+        cartDrawer.classList.remove('active');
+        cartOverlay.classList.remove('active');
+    }
+
+    function openWishlist() {
+        wishlistDrawer.classList.add('active');
+        wishlistOverlay.classList.add('active');
+    }
+
+    function closeWishlist() {
+        wishlistDrawer.classList.remove('active');
+        wishlistOverlay.classList.remove('active');
+    }
+
+    openCartBtn.addEventListener('click', openCart);
+    closeCartBtn.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    openWishlistBtn.addEventListener('click', openWishlist);
+    closeWishlistBtn.addEventListener('click', closeWishlist);
+    wishlistOverlay.addEventListener('click', closeWishlist);
+
+    // Checkout Button
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Your shopping bag is empty.');
+            return;
+        }
+        
+        // Trigger celebratory confetti for order placement
+        confetti({
+            particleCount: 150,
+            spread: 90,
+            origin: { y: 0.6 },
+            colors: ['#d4af37', '#06543b', '#ffffff', '#f3e5ab']
+        });
+
+        alert('🎉 Order Placed Successfully! Complimentary Silk Gift Boxing & Gold Embossing activated for Mom, Dad & Aunt. Thank you for shopping with Aura Royal Couture.');
+        cart = [];
+        updateCartUI();
+        closeCart();
     });
-}
+
+    // Family VIP Gift Voucher Button with Golden Confetti
+    generateVoucherBtn.addEventListener('click', () => {
+        const codes = ['AURA-MOM-VIP-2025', 'AURA-DAD-ROYAL-786', 'AURA-AUNT-REGAL-99', 'AURA-FAMILY-GOLD-50'];
+        const randomCode = codes[Math.floor(Math.random() * codes.length)];
+        voucherCodeDisplay.textContent = randomCode;
+
+        // Trigger stunning golden confetti burst
+        confetti({
+            particleCount: 200,
+            spread: 120,
+            origin: { y: 0.5 },
+            colors: ['#d4af37', '#ffd700', '#fff8dc', '#b89728', '#06543b']
+        });
+    });
+
+    // Initial Render
+    renderProducts('all');
+    updateCartUI();
+    updateWishlistUI();
+});

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison d'Élégance | Luxury Family Boutique</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <span><i class="fa-solid fa-crown"></i> Complimentary Royal Delivery Across Pakistan on Orders Over PKR 25,000 <i class="fa-solid fa-crown"></i></span>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i></button>
+                <nav class="main-nav" id="mainNav">
+                    <a href="#collection">Collections</a>
+                    <a href="#story">Our Maison</a>
+                    <a href="#bespoke">Bespoke Couture</a>
+                </nav>
+            </div>
+            <div class="logo-area">
+                <h1 class="logo-title">Maison d'Élégance</h1>
+                <p class="logo-subtitle">Haute Couture & Family Heritage</p>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" id="wishlistBtn" title="Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </button>
+                <button class="icon-btn" id="bagBtn" title="Shopping Bag">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="badge" id="bagBadge">0</span>
+                </button>
+                <button class="vip-voucher-header-btn" id="vipVoucherBtn">
+                    <i class="fa-solid fa-gem"></i> VIP Gift Voucher
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="hero-tag">Winter Sovereign Collection 2025</span>
+            <h2 class="hero-title">Timeless Luxury for Every Generation</h2>
+            <p class="hero-description">Immerse your family in unrivaled regal emeralds, hand-woven ivory silks, and 24k gold embroidered masterpieces crafted for generational legacy.</p>
+            <div class="hero-actions">
+                <a href="#collection" class="btn btn-gold">Explore Collection <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="btn btn-outline" id="heroSurpriseBtn"><i class="fa-solid fa-gift"></i> Family Surprise Box</button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card-glow"></div>
+            <!-- Custom SVG Fashion Illustration 1 -->
+            <svg class="hero-svg-art" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F3E5AB" />
+                        <stop offset="50%" stop-color="#D4AF37" />
+                        <stop offset="100%" stop-color="#996515" />
+                    </linearGradient>
+                    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0F382B" />
+                        <stop offset="100%" stop-color="#051B13" />
+                    </linearGradient>
+                </defs>
+                <!-- Background Silhouette Aura -->
+                <circle cx="200" cy="250" r="180" fill="url(#emeraldGrad)" opacity="0.3" />
+                <circle cx="200" cy="250" r="140" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6" />
+                <!-- Elegant Dress Silhouette -->
+                <path d="M160 140 C170 120 230 120 240 140 C260 180 290 280 320 390 C325 410 310 420 290 420 L110 420 C90 420 75 410 80 390 C110 280 140 180 160 140 Z" fill="url(#emeraldGrad)" stroke="url(#goldGrad)" stroke-width="2.5"/>
+                <!-- Gold Embroidery Motifs -->
+                <path d="M200 145 L200 400 M150 200 Q200 230 250 200 M130 270 Q200 310 270 270 M110 340 Q200 380 290 340" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.85" fill="none"/>
+                <!-- Sparkling Diamonds -->
+                <polygon points="200,90 206,102 200,114 194,102" fill="url(#goldGrad)" />
+                <polygon points="130,170 134,178 130,186 126,178" fill="url(#goldGrad)" opacity="0.8" />
+                <polygon points="270,170 274,178 270,186 266,178" fill="url(#goldGrad)" opacity="0.8" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Category Tabs Section -->
+    <section class="collection-section" id="collection">
+        <div class="section-header">
+            <span class="sub-heading">Curated Elegance</span>
+            <h2 class="section-title">The Family Boutiques</h2>
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All Masterpieces</button>
+                <button class="tab-btn" data-category="women">Maison Femme</button>
+                <button class="tab-btn" data-category="men">Sovereign Homme</button>
+                <button class="tab-btn" data-category="kids">Petit Héritage</button>
+                <button class="tab-btn" data-category="gifts">Royal Keepsakes</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Dynamically populated by app.js -->
+        </div>
+    </section>
+
+    <!-- VIP Gift Voucher Banner -->
+    <section class="vip-banner-section" id="bespoke">
+        <div class="vip-banner-card">
+            <div class="vip-glow"></div>
+            <div class="vip-content">
+                <div class="vip-badge-icon"><i class="fa-solid fa-crown"></i></div>
+                <h3 class="vip-title">Exclusive Family VIP Gift Voucher</h3>
+                <p class="vip-text">Unlock a complimentary <strong>PKR 15,000 Sovereign Credit</strong> plus private concierge tailoring for your household.</p>
+                <button class="btn btn-gold btn-lg" id="claimVoucherBtn">
+                    <i class="fa-solid fa-sparkles"></i> Claim VIP Voucher Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story / Maison Section -->
+    <section class="story-section" id="story">
+        <div class="story-container">
+            <div class="story-image-box">
+                <!-- Custom SVG Atelier Illustration -->
+                <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="400" rx="200" fill="#0A281F"/>
+                    <circle cx="200" cy="200" r="160" stroke="#D4AF37" stroke-width="1.5" opacity="0.4"/>
+                    <!-- Hanger & Dress Silhouette -->
+                    <path d="M200 90 L230 110 L170 110 Z" fill="#D4AF37"/>
+                    <path d="M190 90 C190 80 210 80 210 90" stroke="#D4AF37" stroke-width="2" fill="none"/>
+                    <path d="M160 120 C180 115 220 115 240 120 C270 170 300 260 310 320 C312 335 300 345 285 345 L115 345 C100 345 88 335 90 320 C100 260 130 170 160 120 Z" fill="#051B13" stroke="#D4AF37" stroke-width="2"/>
+                    <path d="M150 170 Q200 210 250 170 M135 240 Q200 280 265 240" stroke="#D4AF37" stroke-width="1.5" opacity="0.7" fill="none"/>
+                </svg>
+            </div>
+            <div class="story-text-box">
+                <span class="sub-heading">Heritage of Distinction</span>
+                <h2 class="section-title">Crafted for Generations</h2>
+                <p class="story-paragraph">Founded on the principles of immaculate bespoke tailoring and generational refinement, Maison d'Élégance curates elite attire for families who demand nothing short of perfection. Every garment is hand-inspected under royal emerald lights, ensuring pure gold threadwork and heirloom durability.</p>
+                <div class="story-features">
+                    <div class="feature-item">
+                        <i class="fa-solid fa-gem"></i>
+                        <div>
+                            <h4>Pure 24K Zardozi</h4>
+                            <p>Hand-embroidery by master artisans with decades of royal lineage.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fa-solid fa-leaf"></i>
+                        <div>
+                            <h4>Ethical Royal Silks</h4>
+                            <p>Sustainably harvested mulberry ivory silks and organic emerald velvets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Bag Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="side-drawer" id="bagDrawer">
+        <div class="drawer-header">
+            <h3><i class="fa-solid fa-bag-shopping"></i> Your Royal Shopping Bag (<span id="bagCountHeader">0</span>)</h3>
+            <button class="close-drawer" id="closeBagDrawer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="bagItemsContainer">
+            <!-- Dynamically populated -->
+        </div>
+        <div class="drawer-footer" id="bagFooter">
+            <div class="subtotal-row">
+                <span>Subtotal:</span>
+                <span id="bagSubtotal">PKR 0</span>
+            </div>
+            <div class="shipping-row">
+                <span>Royal Delivery:</span>
+                <span class="free-text">COMPLIMENTARY</span>
+            </div>
+            <div class="total-row">
+                <span>Total Sovereign Investment:</span>
+                <span id="bagTotal">PKR 0</span>
+            </div>
+            <button class="btn btn-gold btn-full" id="checkoutBtn"><i class="fa-solid fa-lock"></i> Proceed to Secure Checkout</button>
+        </div>
+    </div>
+
+    <!-- Wishlist Drawer -->
+    <div class="side-drawer" id="wishlistDrawer">
+        <div class="drawer-header">
+            <h3><i class="fa-regular fa-heart"></i> Curated Wishlist (<span id="wishlistCountHeader">0</span>)</h3>
+            <button class="close-drawer" id="closeWishlistDrawer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="drawer-body" id="wishlistItemsContainer">
+            <!-- Dynamically populated -->
+        </div>
+        <div class="drawer-footer">
+            <button class="btn btn-outline btn-full" id="moveAllToBagBtn"><i class="fa-solid fa-bag-shopping"></i> Move All to Shopping Bag</button>
+        </div>
+    </div>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal">
+        <div class="modal-container">
+            <button class="close-modal" id="closeQuickView"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-grid" id="quickViewContent">
+                <!-- Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- VIP Surprise Celebration Modal -->
+    <div class="modal-overlay" id="vipModal">
+        <div class="modal-container vip-modal-box">
+            <button class="close-modal" id="closeVipModal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="vip-modal-body text-center">
+                <div class="gold-crown-icon"><i class="fa-solid fa-crown"></i></div>
+                <span class="sub-heading">Official Royal Decree</span>
+                <h3 class="modal-title">Family VIP Voucher Unlocked!</h3>
+                <p class="modal-desc">Congratulations! Your household has been granted exclusive membership to Maison d'Élégance.</p>
+                <div class="voucher-ticket">
+                    <div class="voucher-header">MAISON D'ÉLÉGANCE SOVEREIGN PASS</div>
+                    <div class="voucher-code">MAISON-VIP-2025-AW</div>
+                    <div class="voucher-value">PKR 15,000 CREDIT</div>
+                </div>
+                <p class="voucher-note">Use code <strong style="color: var(--gold-accent);">MAISON-VIP-2025-AW</strong> at checkout to redeem your credit instantly.</p>
+                <button class="btn btn-gold" id="applyVoucherModalBtn"><i class="fa-solid fa-bag-shopping"></i> Apply to Shopping Bag</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3 class="footer-logo">Maison d'Élégance</h3>
+                <p>The pinnacle of family haute couture, blending royal emerald traditions with contemporary sophistication.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereign Links</h4>
+                <ul>
+                    <li><a href="#collection">Winter Collection</a></li>
+                    <li><a href="#story">Atelier Heritage</a></li>
+                    <li><a href="#bespoke">Bespoke Fitting</a></li>
+                    <li><a href="#bespoke">Gift Vouchers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Concierge Service</h4>
+                <p><i class="fa-solid fa-phone"></i> +92 300 9876543</p>
+                <p><i class="fa-solid fa-envelope"></i> concierge@maisonelegance.pk</p>
+                <p><i class="fa-solid fa-location-dot"></i> Zamzama Boulevard, Phase 5 DHA, Karachi</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Maison d'Élégance. All Rights Reserved.</p>
+            <p class="engineer-signature">Built and Engineered by Awais</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
